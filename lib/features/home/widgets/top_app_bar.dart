@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:service_provider_connect/features/login/screen/login_screen.dart';
+import 'package:service_provider_connect/features/signup/provider_signup.dart';
+import 'package:service_provider_connect/features/signup/signup_screen.dart';
 
 class TopAppBar extends StatelessWidget {
   const TopAppBar({super.key});
@@ -26,10 +28,16 @@ class TopAppBar extends StatelessWidget {
                     Navigator.pushNamed(context, LoginScreen.routeName);
                   },
                   child: const Text('Login')),
-              TextButton(onPressed: () {}, child: const Text('Sign Up')),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, SignUpScreen.routeName);
+                  },
+                  child: const Text('Sign Up')),
               const SizedBox(width: 5),
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, ProviderSignup.routeName);
+                },
                 child: const Text('Become a Service Provider'),
               )
             ],

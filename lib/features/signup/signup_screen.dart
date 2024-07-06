@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:service_provider_connect/common/widgets/centered_view.dart';
-import 'package:service_provider_connect/features/signup/signup_screen.dart';
+import 'package:service_provider_connect/features/login/screen/login_screen.dart';
+import 'package:service_provider_connect/features/signup/provider_signup.dart';
 
-class LoginScreen extends StatefulWidget {
-  static const routeName = '/login-screen';
-  const LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  static const routeName = '/sign-up';
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   bool isVisible = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +56,41 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Theme.of(context).primaryColor, fontSize: 30),
                     ),
                     const SizedBox(height: 30),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        ' Enter your name: ',
+                        style: GoogleFonts.aBeeZee(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Name',
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.primary,
+                            width: 1,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.primary,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
@@ -139,11 +176,64 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 16),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        ' Confirm password: ',
+                        style: GoogleFonts.aBeeZee(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      obscureText: !isVisible,
+                      decoration: InputDecoration(
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isVisible = !isVisible;
+                              });
+                            },
+                            child: Icon(
+                              isVisible
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                          ),
+                        ),
+                        hintText: 'Confirm Password',
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.primary,
+                            width: 1,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.primary,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: 10),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, ProviderSignup.routeName);
+                      },
                       child: Text(
-                        ' Forgot Password ?',
+                        ' Want to be a service provider ?',
                         style: GoogleFonts.aBeeZee(
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
@@ -160,25 +250,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                         ),
                       ),
-                      child: const Text('Log In as a User'),
-                    ),
-                    const SizedBox(height: 15),
-                    FilledButton(
-                      onPressed: () {},
-                      style: FilledButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 50),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                        ),
-                      ),
-                      child: const Text('Log In as a Service Provider'),
+                      child: const Text('Sign Up'),
                     ),
                     const SizedBox(height: 15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Don\'t have an account ?',
+                          'Already registered ?',
                           style: GoogleFonts.aBeeZee(
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
@@ -186,11 +265,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, SignUpScreen.routeName);
+                            Navigator.pushNamed(context, LoginScreen.routeName);
                           },
                           child: Text(
-                            'Sign Up',
+                            'Login',
                             style: GoogleFonts.aBeeZee(
                               fontWeight: FontWeight.bold,
                               fontSize: 12,
