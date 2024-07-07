@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:service_provider_connect/features/login/screen/login_screen.dart';
-import 'package:service_provider_connect/features/signup/provider_signup.dart';
-import 'package:service_provider_connect/features/signup/signup_screen.dart';
+import 'package:service_provider_connect/features/authentication/screen/login_screen.dart';
+import 'package:service_provider_connect/features/authentication/screen/provider_signup.dart';
+import 'package:service_provider_connect/features/authentication/screen/signup_screen.dart';
 
 class TopAppBar extends StatelessWidget {
   const TopAppBar({super.key});
